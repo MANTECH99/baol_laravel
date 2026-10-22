@@ -1,12 +1,40 @@
 -- Baol: Django (Railway) -> Laravel (Hostinger) data migration
--- Generated 2026-10-22 03:14:38
+-- Generated 2026-10-22 03:37:00
 -- Import this file into the Laravel database (phpMyAdmin).
 -- Requires the Laravel tables to exist (run `php artisan migrate` first).
+-- Order: DELETE children-first, INSERT parents-first -> works even if
+-- FOREIGN_KEY_CHECKS=0 below is ignored by the client.
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS=0;
 
 DELETE FROM `livraisons`;
+DELETE FROM `statut_camions`;
+DELETE FROM `camions`;
+DELETE FROM `rapports`;
+DELETE FROM `users`;
+
+INSERT INTO `camions` (`id`, `numero`, `telephone`) VALUES
+('2', '1951', '70 566 17 47'),
+('3', '1952', '78 478 57 91'),
+('4', '1954', '76 406 26 78'),
+('5', '1955', '76 866 13 07'),
+('6', '1956', '78 223 33 71'),
+('7', '1957', '70 518 80 20'),
+('8', '1958', '77 256 40 72'),
+('9', '1959', '76 867 85 89'),
+('10', '1960', '76 812 54 89'),
+('11', '1961', '76 773 37 59'),
+('12', '1964', '76 220 75 74'),
+('13', '1965', '76 344 83 13'),
+('14', '1967', '78 272 58 72'),
+('15', '1968', '77 151 14 57'),
+('16', '1969', '76 925 17 89'),
+('17', '1970', '77 815 95 30'),
+('18', '1962', '772607977'),
+('19', '1953', '784807771'),
+('20', '1950', '78 143 45 78');
+
 INSERT INTO `livraisons` (`id`, `date`, `camion_id`, `tonnage`, `prix_unitaire`, `quantite`, `montant`, `chiffonage`, `numero_bl`, `statut`, `verification`) VALUES
 ('11', '2025-03-13', '2', '4.96', '0', '1', '0', NULL, '063575', 'enregistré', 'non_verifié'),
 ('12', '2025-03-14', '2', '5.32', '2500', '1', '2500', NULL, '064150', 'enregistré', 'non_verifié'),
@@ -5979,7 +6007,6 @@ INSERT INTO `livraisons` (`id`, `date`, `camion_id`, `tonnage`, `prix_unitaire`,
 ('6072', '2026-09-26', '3', '10.22', '5000', '1', '5000', NULL, '0247091', 'enregistré', 'verifié'),
 ('6075', '2026-09-19', '5', '6.64', '2500', '1', '2500', NULL, '0244059', 'enregistré', 'verifié');
 
-DELETE FROM `statut_camions`;
 INSERT INTO `statut_camions` (`id`, `camion_id`, `date`, `statut`) VALUES
 ('2', '2', NULL, 'off'),
 ('3', '4', NULL, 'off'),
@@ -7410,33 +7437,9 @@ INSERT INTO `statut_camions` (`id`, `camion_id`, `date`, `statut`) VALUES
 ('1469', '3', '2026-06-08', 'Travaille pas'),
 ('1470', '3', '2026-06-09', 'Travaille pas');
 
-DELETE FROM `camions`;
-INSERT INTO `camions` (`id`, `numero`, `telephone`) VALUES
-('2', '1951', '70 566 17 47'),
-('3', '1952', '78 478 57 91'),
-('4', '1954', '76 406 26 78'),
-('5', '1955', '76 866 13 07'),
-('6', '1956', '78 223 33 71'),
-('7', '1957', '70 518 80 20'),
-('8', '1958', '77 256 40 72'),
-('9', '1959', '76 867 85 89'),
-('10', '1960', '76 812 54 89'),
-('11', '1961', '76 773 37 59'),
-('12', '1964', '76 220 75 74'),
-('13', '1965', '76 344 83 13'),
-('14', '1967', '78 272 58 72'),
-('15', '1968', '77 151 14 57'),
-('16', '1969', '76 925 17 89'),
-('17', '1970', '77 815 95 30'),
-('18', '1962', '772607977'),
-('19', '1953', '784807771'),
-('20', '1950', '78 143 45 78');
 
-DELETE FROM `rapports`;
-
-DELETE FROM `users`;
 INSERT INTO `users` (`id`, `username`, `password`, `is_admin`, `created_at`, `updated_at`) VALUES
-('1', 'abdoulahadgueye1999@gmail.com', '$2y$10$jCvt3QqwIuDF1fh2SPzVSeXT0n5VAvr.UPLT6ONUI3o1aUSBZapDe', '1', '2026-10-22 03:07:53.040502', '2026-10-22 03:07:53.040502'),
-('4', 'dimariaagueye100@gmail.com', '$2y$10$4JsLQT8.6Izb3W20urofGO65gUS36eQTlonPEg4DLRbrBl3nQWsR6', '0', '2026-10-22 02:20:12.333119', '2026-10-22 02:20:12.333119');
+('1', 'abdoulahadgueye1999@gmail.com', '$2y$10$DwXJ87YwS64I7fzb/rsSkevl0wyZ/mENZt0W.l0QW0.CUOiCmatZK', '1', '2026-10-22 03:07:53.040502', '2026-10-22 03:07:53.040502'),
+('4', 'dimariaagueye100@gmail.com', '$2y$10$AiwSehwZmhBWKCyEkbgvEuG/pdIkmCukQUmSw1jGndjcwAxAYBTh6', '0', '2026-10-22 02:20:12.333119', '2026-10-22 02:20:12.333119');
 
 SET FOREIGN_KEY_CHECKS=1;
