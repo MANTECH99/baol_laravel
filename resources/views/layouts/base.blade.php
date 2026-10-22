@@ -6,7 +6,7 @@
     <title>Baol Distributions</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="icon" type="image/png" href="{{ asset('images/baol.png') }}">
+    <link rel="icon" type="image/png" href="/images/baol.png">
     <style>
         .sidebar {
             width: 170px;
@@ -109,19 +109,19 @@
 </head>
 <body>
     <div class="sidebar">
-        <img src="{{ asset('images/logos.png') }}" alt="Logo">
+        <img src="/images/logos.png" alt="Logo">
         <nav>
-            <a href="{{ route('dashboard') }}" class="{{ request()->is('dashboard*') ? 'active' : '' }}">
+            <a href="{{ route('dashboard', [], false) }}" class="{{ request()->is('dashboard*') ? 'active' : '' }}">
                 <i class="fas fa-home"></i> Dashboard
             </a>
-            <a href="{{ route('liste_livraisons') }}" class="{{ request()->is('livraisons*') ? 'active' : '' }}">
+            <a href="{{ route('liste_livraisons', [], false) }}" class="{{ request()->is('livraisons*') ? 'active' : '' }}">
                 <i class="fas fa-truck"></i> Livraisons
             </a>
-            <a href="{{ route('liste_rapports') }}" class="{{ request()->is('rapports*') ? 'active' : '' }}">
+            <a href="{{ route('liste_rapports', [], false) }}" class="{{ request()->is('rapports*') ? 'active' : '' }}">
                 <i class="fas fa-file-alt"></i> Rapports
             </a>
             @if(auth()->check() && auth()->user()->is_admin)
-                <a href="{{ route('admin.dashboard') }}" class="{{ request()->is('admin*') ? 'active' : '' }}">
+                <a href="{{ route('admin.dashboard', [], false) }}" class="{{ request()->is('admin*') ? 'active' : '' }}">
                     <i class="fas fa-user-shield"></i> Administration
                 </a>
             @endif
@@ -142,7 +142,7 @@
                 <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
             </form>
             @auth
-            <form action="{{ route('logout') }}" method="post">
+            <form action="{{ route('logout', [], false) }}" method="post">
                 @csrf
                 <button type="submit" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Déconnexion</button>
             </form>

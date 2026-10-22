@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Accueil') | Administration | Baol Distributions</title>
-    <link rel="icon" type="image/png" href="{{ asset('images/baol.png') }}">
+    <link rel="icon" type="image/png" href="/images/baol.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         * { box-sizing: border-box; }
@@ -172,12 +172,12 @@
 <body>
     <div id="header">
         <div id="branding">
-            <h1><a href="{{ route('admin.dashboard') }}">Baol Distributions administration</a></h1>
+            <h1><a href="{{ route('admin.dashboard', [], false) }}">Baol Distributions administration</a></h1>
         </div>
         <div id="user-tools">
             Bienvenue, <strong>{{ auth()->user()->username ?? 'admin' }}</strong>.
-            <a href="{{ route('dashboard') }}">Retour au site</a> /
-            <form action="{{ route('logout') }}" method="post" style="display:inline;">
+            <a href="{{ route('dashboard', [], false) }}">Retour au site</a> /
+            <form action="{{ route('logout', [], false) }}" method="post" style="display:inline;">
                 @csrf
                 <button type="submit">Déconnexion</button>
             </form>
@@ -197,7 +197,7 @@
 
     @hasSection('breadcrumbs')
         <div class="breadcrumbs">
-            <a href="{{ route('admin.dashboard') }}">Home</a>
+            <a href="{{ route('admin.dashboard', [], false) }}">Home</a>
             @yield('breadcrumbs')
         </div>
     @endif

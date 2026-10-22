@@ -2,13 +2,13 @@
 
 @section('title', 'Sélectionner livraison à modifier')
 @section('breadcrumbs')
-    <span class="separator">›</span> <a href="{{ route('admin.dashboard') }}">Site administration</a>
+    <span class="separator">›</span> <a href="{{ route('admin.dashboard', [], false) }}">Site administration</a>
     <span class="separator">›</span> Livraisons
 @endsection
 
 @section('content')
     <div class="object-tools">
-        <a href="{{ route('admin.livraisons.create') }}">Ajouter une livraison +</a>
+        <a href="{{ route('admin.livraisons.create', [], false) }}">Ajouter une livraison +</a>
     </div>
 
     <div class="module">
@@ -40,9 +40,9 @@
                     <td>{{ $livraison->montant }}</td>
                     <td>{{ $livraison->statut_display }}</td>
                     <td>
-                        <a href="{{ route('admin.livraisons.edit', $livraison->id) }}" class="changelink">Modifier</a>
+                        <a href="{{ route('admin.livraisons.edit', $livraison->id, false) }}" class="changelink">Modifier</a>
                         &nbsp;|&nbsp;
-                        <form action="{{ route('admin.livraisons.destroy', $livraison->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Supprimer cette livraison ?')">
+                        <form action="{{ route('admin.livraisons.destroy', $livraison->id, false) }}" method="POST" class="d-inline" onsubmit="return confirm('Supprimer cette livraison ?')">
                             @csrf @method('DELETE')
                             <button type="submit" class="deletelink">Supprimer</button>
                         </form>

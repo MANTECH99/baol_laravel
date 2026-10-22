@@ -25,8 +25,8 @@
             <td>{{ django_date($rapport->mois) }}</td>
             <td>{{ $rapport->fichier }}</td>
             <td>{{ $rapport->date_ajout->format('d M Y') }}</td>
-            <td><a href="{{ route('telecharger_rapport', $rapport->id) }}" class="btn btn-success">Télécharger</a>
-            <a href="{{ route('supprimer_rapport', $rapport->id) }}"
+            <td><a href="{{ route('telecharger_rapport', $rapport->id, false) }}" class="btn btn-success">Télécharger</a>
+            <a href="{{ route('supprimer_rapport', $rapport->id, false) }}"
                class="btn btn-danger"
                onclick="return confirmSuppression(event, '{{ $rapport->mois->format('F Y') }}');">
                 Supprimer
@@ -37,7 +37,7 @@
     </tbody>
 </table>
 
-<a href="{{ route('ajouter_rapport') }}" class="btn btn-primary">Ajouter un Rapport</a>
+<a href="{{ route('ajouter_rapport', [], false) }}" class="btn btn-primary">Ajouter un Rapport</a>
 <script>
 function confirmSuppression(event, mois) {
     event.preventDefault();

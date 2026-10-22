@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="icon" type="image/png" href="{{ asset('images/baol.png') }}">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" href="/images/baol.png">
     <title>Baol Distribution</title>
     <style>
         .input-container {
@@ -34,10 +34,10 @@
 <body>
     <div class="container active" id="container">
         <div class="form-container sign-in">
-            <form method="post" action="{{ route('password.update') }}">
+            <form method="post" action="{{ route('password.update', [], false) }}">
                 @csrf
                 <input type="hidden" name="token" value="{{ $token }}">
-                <img src="{{ asset('images/baol.png') }}" alt="Logo" class="logo">
+                <img src="/images/baol.png" alt="Logo" class="logo">
                 <h1>Nouveau mot de passe</h1>
                 <div class="input-container">
                     <i class="fa-solid fa-envelope"></i>

@@ -51,7 +51,20 @@ class RapportController extends Controller
             ]);
 
             if ($request->hasFile('fichier')) {
-                $path = $request->file('fichier')->store('rapports', 'public');
+                $file = $request->file('fichier');
+                $name = str_replace(' ', '_', trim($file->getClientOriginalName()));
+                $name = preg_replace('/[^\w.\-]/u', '', $name);
+                if ($name === '' || $name === '.' || $name === '..') {
+                    $name = 'rapport_' . time();
+                }
+                $ext = pathinfo($name, PATHINFO_EXTENSION);
+                $base = $ext !== '' ? substr($name, 0, -(strlen($ext) + 1)) : $name;
+                $candidate = $name;
+                while (Storage::disk('public')->exists('rapports/' . $candidate)) {
+                    $rand = \Illuminate\Support\Str::random(7);
+                    $candidate = $ext !== '' ? "{$base}_{$rand}.{$ext}" : "{$base}_{$rand}";
+                }
+                $path = $file->storeAs('rapports', $candidate, 'public');
             }
 
             Rapport::create([

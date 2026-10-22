@@ -21,9 +21,9 @@
 <div class="mb-3">
     <label for="camion_filter"><i class="fas fa-truck text-primary"></i> Filtrer par camion :</label>
     <form method="GET" class="d-inline-block">
-        <input type="hidden" name="filter_type" value="{{ $filter_type }}">
-        <input type="hidden" name="date" value="{{ $selected_date }}">
-        <input type="hidden" name="month" value="{{ $selected_month }}">
+        <input type="hidden" name="filter_type" value="{{ $filter_type ?? 'None' }}">
+        <input type="hidden" name="date" value="{{ $selected_date ?? 'None' }}">
+        <input type="hidden" name="month" value="{{ $selected_month ?? 'None' }}">
         <select id="camion_filter" name="camion" class="form-control d-inline-block w-auto" onchange="this.form.submit()">
             <option value="">Tous les camions</option>
             @foreach($camions as $camion)
@@ -44,9 +44,9 @@
     </select>&nbsp;&nbsp;&nbsp;
 
     <form method="GET" class="d-inline-block">
-        <input type="hidden" name="filter_type" value="{{ $filter_type }}">
-        <input type="hidden" name="date" value="{{ $selected_date }}">
-        <input type="hidden" name="month" value="{{ $selected_month }}">
+        <input type="hidden" name="filter_type" value="{{ $filter_type ?? 'None' }}">
+        <input type="hidden" name="date" value="{{ $selected_date ?? 'None' }}">
+        <input type="hidden" name="month" value="{{ $selected_month ?? 'None' }}">
         <input type="hidden" name="camion" value="{{ $selected_camion_id ?? '' }}">
         <input type="hidden" name="tonnage_filter" value="{{ $tonnage_filter == 'lt5' ? 'lt5' : '' }}">
         <button type="submit" name="tonnage_filter" value="lt5" class="btn btn-info ml-2">
@@ -54,7 +54,7 @@
         </button>
     </form>
 
-<a href="{{ route('exporter_livraisons_excel', [], false) }}?filter_type={{ $filter_type }}&date={{ $selected_date }}&month={{ $selected_month }}&camion={{ $selected_camion_id ?? '' }}&tonnage_filter={{ $tonnage_filter ?? '' }}"
+<a href="{{ route('exporter_livraisons_excel', [], false) }}?filter_type={{ $filter_type ?? 'None' }}&date={{ $selected_date ?? 'None' }}&month={{ $selected_month ?? 'None' }}&camion={{ $selected_camion_id ?? '' }}&tonnage_filter={{ $tonnage_filter ?? '' }}"
    class="btn btn-success">
     <i class="fas fa-file-excel text-white"></i> Exporter en Excel
 </a>
@@ -64,7 +64,7 @@
     <form method="GET" class="mb-3">
         <input type="hidden" name="filter_type" value="date">
         <input type="hidden" name="camion" value="{{ $selected_camion_id ?? '' }}">
-        <input type="hidden" name="month" value="{{ $selected_month }}">
+        <input type="hidden" name="month" value="{{ $selected_month ?? 'None' }}">
         <label for="date"><i class="fas fa-calendar-day text-info"></i> Sélectionner une date :</label>
         <input type="date" id="date" name="date" value="{{ $selected_date ?? '' }}" class="form-control d-inline-block w-auto">
         <button type="submit" class="btn btn-primary"><i class="fas fa-filter text-white"></i> Filtrer</button>
@@ -74,7 +74,7 @@
     <form method="GET" class="mb-3">
         <input type="hidden" name="filter_type" value="month">
         <input type="hidden" name="camion" value="{{ $selected_camion_id ?? '' }}">
-        <input type="hidden" name="date" value="{{ $selected_date }}">
+        <input type="hidden" name="date" value="{{ $selected_date ?? 'None' }}">
         <label for="month"><i class="fas fa-calendar-alt text-warning"></i> Sélectionner un mois :</label>
         <input type="month" id="month" name="month" value="{{ $selected_month ?? '' }}" class="form-control d-inline-block w-auto">
         <button type="submit" class="btn btn-primary"><i class="fas fa-filter text-white"></i> Filtrer</button>
@@ -91,7 +91,7 @@
 @if($show_camion_pagination)
     <div class="d-flex justify-content mt-4 mb-4 flex-wrap">
         @foreach($all_camions as $index => $cam)
-            <a href="?filter_type=month&month={{ $selected_month }}&camion={{ $cam->id }}&page={{ $index + 1 }}"
+            <a href="?filter_type=month&month={{ $selected_month ?? 'None' }}&camion={{ $cam->id }}&page={{ $index + 1 }}"
                class="btn btn-sm {{ $current_camions->isNotEmpty() && $current_camions->first()->id == $cam->id ? 'btn-primary' : 'btn-outline-primary' }} mx-1 my-1">
                 {{ $cam->numero }}
             </a>

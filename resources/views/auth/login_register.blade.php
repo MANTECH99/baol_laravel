@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="icon" type="image/png" href="{{ asset('images/baol.png') }}">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" href="/images/baol.png">
     <title>Baol Distribution</title>
     <style>
         .input-container {
@@ -34,9 +34,9 @@
 <body>
     <div class="container" id="container">
         <div class="form-container sign-up">
-            <form method="post" action="{{ route('register') }}">
+            <form method="post" action="{{ route('register', [], false) }}">
                 @csrf
-                <img src="{{ asset('images/baol.png') }}" alt="Logo" class="logo">
+                <img src="/images/baol.png" alt="Logo" class="logo">
                 <h1>Créer un Compte</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -64,9 +64,9 @@
         </div>
 
         <div class="form-container sign-in">
-            <form method="post" action="{{ url('/login') }}">
+            <form method="post" action="/login">
                 @csrf
-                <img src="{{ asset('images/baol.png') }}" alt="Logo" class="logo">
+                <img src="/images/baol.png" alt="Logo" class="logo">
                 <h1>Connectez-vous</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -85,7 +85,7 @@
                 @if(isset($login_error) && $login_error)
                     <p style="color: red; font-size: 14px; margin-top: 10px;">{{ $login_error }}</p>
                 @endif
-                <a href="{{ route('password.request') }}">Forget Your Password?</a>
+                <a href="{{ route('password.request', [], false) }}">Forget Your Password?</a>
                 <button type="submit">Se Connecter</button>
             </form>
         </div>
@@ -93,13 +93,13 @@
         <div class="toggle-container">
             <div class="toggle">
                 <div class="toggle-panel toggle-left">
-                    <img src="{{ asset('images/baol.png') }}" alt="Logo" class="logo">
+                    <img src="/images/baol.png" alt="Logo" class="logo">
                     <h1>Connexion !</h1>
                     <p>Saisissez vos informations personnelles pour utiliser toutes les fonctionnalités du site</p>
                     <button class="hidden" id="login">Se Connecter</button>
                 </div>
                 <div class="toggle-panel toggle-right">
-                    <img src="{{ asset('images/baol.png') }}" alt="Logo" class="logo">
+                    <img src="/images/baol.png" alt="Logo" class="logo">
                     <h1>baol distribution</h1>
                     <p>Inscrivez-vous avec vos informations personnelles pour utiliser toutes les fonctionnalités du site</p>
                     <button class="hidden" id="register">S'inscrire</button>

@@ -12,7 +12,7 @@
         <p>Pour la date : {{ $date }}</p>
     @endif
 
-    <form method="post" class="mt-3" action="{{ route('modifier_statut_camion', $camion->id) }}?date={{ $date }}">
+    <form method="post" class="mt-3">
         @csrf
         <div class="mb-3">
             <label for="statut" class="form-label">Statut :</label>
@@ -23,7 +23,7 @@
             </select>
         </div>
         <button type="submit" class="btn btn-primary">Enregistrer</button>
-        <a href="{{ route('liste_livraisons') }}" class="btn btn-secondary">Annuler</a>
+        <a href="{{ route('liste_livraisons', [], false) }}" class="btn btn-secondary">Annuler</a>
     </form>
 </div>
 </body>

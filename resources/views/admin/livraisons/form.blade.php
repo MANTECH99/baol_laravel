@@ -2,13 +2,13 @@
 
 @section('title', $livraison ? 'Modifier livraison' : 'Ajouter livraison')
 @section('breadcrumbs')
-    <span class="separator">›</span> <a href="{{ route('admin.dashboard') }}">Site administration</a>
-    <span class="separator">›</span> <a href="{{ route('admin.livraisons.index') }}">Livraisons</a>
+    <span class="separator">›</span> <a href="{{ route('admin.dashboard', [], false) }}">Site administration</a>
+    <span class="separator">›</span> <a href="{{ route('admin.livraisons.index', [], false) }}">Livraisons</a>
     <span class="separator">›</span> {{ $livraison ? 'Livraison n° ' . $livraison->id : 'Ajouter une livraison' }}
 @endsection
 
 @section('content')
-    <form method="POST" action="{{ $livraison ? route('admin.livraisons.update', $livraison->id) : route('admin.livraisons.store') }}">
+    <form method="POST" action="{{ $livraison ? route('admin.livraisons.update', $livraison->id, false) : route('admin.livraisons.store', [], false) }}">
         @csrf
         @if($livraison) @method('PUT') @endif
 
@@ -79,11 +79,11 @@
 
             <div class="submit-row">
                 @if($livraison)
-                    <a href="{{ route('admin.livraisons.destroy', $livraison->id) }}"
+                    <a href="{{ route('admin.livraisons.destroy', $livraison->id, false) }}"
                        class="deletelink"
                        onclick="event.preventDefault(); document.getElementById('delete-form').submit();">Supprimer</a>
                 @endif
-                <a href="{{ route('admin.livraisons.index') }}" class="button cancel">Annuler</a>
+                <a href="{{ route('admin.livraisons.index', [], false) }}" class="button cancel">Annuler</a>
                 <input type="submit" value="Enregistrer">
                 <input type="submit" name="_addanother" value="Enregistrer et ajouter un autre">
             </div>
@@ -91,7 +91,7 @@
     </form>
 
     @if($livraison)
-    <form id="delete-form" action="{{ route('admin.livraisons.destroy', $livraison->id) }}" method="POST" style="display:none;">
+    <form id="delete-form" action="{{ route('admin.livraisons.destroy', $livraison->id, false) }}" method="POST" style="display:none;">
         @csrf @method('DELETE')
     </form>
     @endif

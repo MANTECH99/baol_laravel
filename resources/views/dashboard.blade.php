@@ -6,10 +6,10 @@
 <div class="mb-3">
     <label for="camion_filter"><i class="fas fa-truck text-primary"></i> Filtrer par camions :</label>
     <form method="GET" class="d-inline-block">
-        <input type="hidden" name="filter_type" value="{{ $filter_type }}">
-        <input type="hidden" name="date" value="{{ $selected_date }}">
-        <input type="hidden" name="month" value="{{ $selected_month }}">
-        <input type="hidden" name="year" value="{{ $selected_year }}">
+        <input type="hidden" name="filter_type" value="{{ $filter_type ?? 'None' }}">
+        <input type="hidden" name="date" value="{{ $selected_date ?? 'None' }}">
+        <input type="hidden" name="month" value="{{ $selected_month ?? 'None' }}">
+        <input type="hidden" name="year" value="{{ $selected_year ?? 'None' }}">
         <select id="camion_filter" name="camion" class="form-control d-inline-block w-auto" onchange="this.form.submit()">
             <option value="">Tous les camions</option>
             @foreach($camions as $camion)
@@ -71,7 +71,7 @@
     </form>
 </div>
 
-<a href="{{ route('dashboard') }}" class="btn btn-secondary mb-3">
+<a href="{{ route('dashboard', [], false) }}" class="btn btn-secondary mb-3">
     <i class="fas fa-undo"></i> Réinitialiser
 </a>
 

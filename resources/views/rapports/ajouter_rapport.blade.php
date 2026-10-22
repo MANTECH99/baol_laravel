@@ -4,7 +4,7 @@
 <div class="container-fluid mt-5">
 <h2>Ajouter un Rapport</h2>
 
-<form method="post" enctype="multipart/form-data" class="p-4 shadow bg-white rounded" action="{{ route('ajouter_rapport') }}">
+<form method="post" enctype="multipart/form-data" class="p-4 shadow bg-white rounded" action="{{ route('ajouter_rapport', [], false) }}">
     @csrf
     <div class="mb-3">
         <label class="form-label">Sélectionner le mois :</label>
@@ -23,6 +23,6 @@
     <button type="submit" class="btn btn-primary">Ajouter</button>
 </form>
 
-<a href="{{ route('liste_rapports') }}" class="btn btn-secondary">Retour</a>
+<a href="{{ route('liste_rapports', [], false) }}" class="btn btn-secondary">Retour</a>
 </div>
 @endsection

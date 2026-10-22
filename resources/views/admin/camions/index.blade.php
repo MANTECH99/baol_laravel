@@ -2,13 +2,13 @@
 
 @section('title', 'Sélectionner camion à modifier')
 @section('breadcrumbs')
-    <span class="separator">›</span> <a href="{{ route('admin.dashboard') }}">Site administration</a>
+    <span class="separator">›</span> <a href="{{ route('admin.dashboard', [], false) }}">Site administration</a>
     <span class="separator">›</span> Camions
 @endsection
 
 @section('content')
     <div class="object-tools">
-        <a href="{{ route('admin.camions.create') }}">Ajouter un camion +</a>
+        <a href="{{ route('admin.camions.create', [], false) }}">Ajouter un camion +</a>
     </div>
 
     <div class="module">
@@ -28,13 +28,13 @@
                 <tr>
                     <td>{{ $camion->id }}</td>
                     <td>
-                        <a href="{{ route('admin.camions.edit', $camion->id) }}" class="changelink">{{ $camion->numero }}</a>
+                        <a href="{{ route('admin.camions.edit', $camion->id, false) }}" class="changelink">{{ $camion->numero }}</a>
                     </td>
                     <td>{{ $camion->telephone }}</td>
                     <td>
-                        <a href="{{ route('admin.camions.edit', $camion->id) }}" class="changelink">Modifier</a>
+                        <a href="{{ route('admin.camions.edit', $camion->id, false) }}" class="changelink">Modifier</a>
                         &nbsp;|&nbsp;
-                        <form action="{{ route('admin.camions.destroy', $camion->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Supprimer ce camion ?')">
+                        <form action="{{ route('admin.camions.destroy', $camion->id, false) }}" method="POST" class="d-inline" onsubmit="return confirm('Supprimer ce camion ?')">
                             @csrf @method('DELETE')
                             <button type="submit" class="deletelink">Supprimer</button>
                         </form>

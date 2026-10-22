@@ -134,7 +134,7 @@ class LivraisonController extends Controller
             $selectedDate = null;
         }
 
-        $camion = $camionId ? Camion::find($camionId) : null;
+        $camion = $camionId ? Camion::findOrFail($camionId) : null;
 
         if ($request->isMethod('POST')) {
             $validator = Validator::make($request->all(), [

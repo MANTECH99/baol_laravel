@@ -2,13 +2,13 @@
 
 @section('title', $camion ? 'Modifier camion' : 'Ajouter camion')
 @section('breadcrumbs')
-    <span class="separator">›</span> <a href="{{ route('admin.dashboard') }}">Site administration</a>
-    <span class="separator">›</span> <a href="{{ route('admin.camions.index') }}">Camions</a>
+    <span class="separator">›</span> <a href="{{ route('admin.dashboard', [], false) }}">Site administration</a>
+    <span class="separator">›</span> <a href="{{ route('admin.camions.index', [], false) }}">Camions</a>
     <span class="separator">›</span> {{ $camion ? $camion->numero : 'Ajouter un camion' }}
 @endsection
 
 @section('content')
-    <form method="POST" action="{{ $camion ? route('admin.camions.update', $camion->id) : route('admin.camions.store') }}">
+    <form method="POST" action="{{ $camion ? route('admin.camions.update', $camion->id, false) : route('admin.camions.store', [], false) }}">
         @csrf
         @if($camion) @method('PUT') @endif
 
@@ -41,11 +41,11 @@
 
             <div class="submit-row">
                 @if($camion)
-                    <a href="{{ route('admin.camions.destroy', $camion->id) }}"
+                    <a href="{{ route('admin.camions.destroy', $camion->id, false) }}"
                        class="deletelink"
                        onclick="event.preventDefault(); document.getElementById('delete-form').submit();">Supprimer</a>
                 @endif
-                <a href="{{ route('admin.camions.index') }}" class="button cancel">Annuler</a>
+                <a href="{{ route('admin.camions.index', [], false) }}" class="button cancel">Annuler</a>
                 <input type="submit" value="Enregistrer">
                 <input type="submit" name="_addanother" value="Enregistrer et ajouter un autre">
             </div>
@@ -53,7 +53,7 @@
     </form>
 
     @if($camion)
-    <form id="delete-form" action="{{ route('admin.camions.destroy', $camion->id) }}" method="POST" style="display:none;">
+    <form id="delete-form" action="{{ route('admin.camions.destroy', $camion->id, false) }}" method="POST" style="display:none;">
         @csrf @method('DELETE')
     </form>
     @endif
