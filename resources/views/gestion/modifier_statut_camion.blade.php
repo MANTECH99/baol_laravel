@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier Statut du Camion</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+    <h1>Modifier le statut du camion {{ $camion->numero }}</h1>
+    @if($date)
+        <p>Pour la date : {{ $date }}</p>
+    @endif
+
+    <form method="post" class="mt-3" action="{{ route('modifier_statut_camion', $camion->id) }}?date={{ $date }}">
+        @csrf
+        <div class="mb-3">
+            <label for="statut" class="form-label">Statut :</label>
+            <select name="statut" id="statut" class="form-select">
+                <option value="En attente">En attente</option>
+                <option value="En panne">En panne</option>
+                <option value="Travaille pas">Travaille pas</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        <a href="{{ route('liste_livraisons') }}" class="btn btn-secondary">Annuler</a>
+    </form>
+</div>
+</body>
+</html>
